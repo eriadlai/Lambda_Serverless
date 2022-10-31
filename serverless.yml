@@ -1,0 +1,241 @@
+
+service: aws-lambda-api
+frameworkVersion: "3.23.0"
+
+provider:
+  name: aws
+  endpointType: REGIONAL
+  runtime: nodejs12.x
+  stage: dev
+  profile: AdlaiCG
+  region: us-west-1
+
+functions:
+  carreraInsert:
+    handler: Rutas/handler-carrera.carreraInsert
+    url: true
+    events: 
+      - http:
+          method: post
+          cors: true
+          path: /Carrera
+          integration: lambda
+          request:
+            template:
+              application/json: '{ "oNombre" : $input.json("oNombre") }'
+  carreraGetAll:
+    handler: Rutas/handler-carrera.carreraGetAll
+    url: true
+    events: 
+      - http:
+          method: get
+          cors: true
+          path: /Carrera
+          integration: lambda
+  carreraGetById:
+    handler: Rutas/handler-carrera.carreraGetById
+    url: true
+    events: 
+      - http:
+          method: get
+          cors: true
+          path: /CarreraById
+          integration: lambda
+          request:
+            template:
+              application/json: '{ "oID" : $input.json("oID") }'
+  carreraDelete:
+    handler: Rutas/handler-carrera.carreraDelete
+    url: true
+    events: 
+      - http:
+          method: delete
+          cors: true
+          path: /Carrera
+          integration: lambda
+          request:
+            template:
+              application/json: '{ "oID" : $input.json("oID") }'
+  carreraUpdate:
+    handler: Rutas/handler-carrera.carreraUpdate
+    url: true
+    events: 
+      - http:
+          method: put
+          cors: true
+          path: /Carrera
+          integration: lambda
+          request:
+            template:
+              application/json: '{ "oID" : $input.json("oID"), "oNombre" : $input.json("oNombre") }'
+  alumnoInsert:
+    handler: Rutas/handler-alumno.alumnoInsert
+    url: true
+    events: 
+      - http:
+          method: post
+          cors: true
+          path: /Alumno
+          integration: lambda
+          request:
+            template:
+              application/json: '{ "oNombre" : $input.json("oNombre"),"oApellido" : $input.json("oApellido"),"oMatricula" : $input.json("oMatricula"),"oFecha_Nacimiento" : $input.json("oFecha_Nacimiento"),"oSemestre" : $input.json("oSemestre"),"oCarreraID" : $input.json("oCarreraID") }'
+  alumnoGetAll:
+    handler: Rutas/handler-alumno.alumnoGetAll
+    url: true
+    events: 
+      - http:
+          method: get
+          cors: true
+          path: /Alumno
+          integration: lambda
+  alumnoGetById:
+    handler: Rutas/handler-alumno.alumnoGetById
+    url: true
+    events: 
+      - http:
+          method: get
+          cors: true
+          path: /AlumnoById
+          integration: lambda
+          request:
+            template:
+              application/json: '{ "oID" : $input.json("oID") }'
+  alumnoDelete:
+    handler: Rutas/handler-alumno.alumnoDelete
+    url: true
+    events: 
+      - http:
+          method: delete
+          cors: true
+          path: /Alumno
+          integration: lambda
+          request:
+            template:
+              application/json: '{ "oID" : $input.json("oID") }'
+  alumnoUpdate:
+    handler: Rutas/handler-alumno.alumnoUpdate
+    url: true
+    events: 
+      - http:
+          method: put
+          cors: true
+          path: /Alumno
+          integration: lambda
+          request:
+            template:
+              application/json: '{ "oID" : $input.json("oID"),"oNombre" : $input.json("oNombre"),"oApellido" : $input.json("oApellido"),"oMatricula" : $input.json("oMatricula"),"oFecha_Nacimiento" : $input.json("oFecha_Nacimiento"),"oSemestre" : $input.json("oSemestre"),"oCarreraID" : $input.json("oCarreraID") }'
+  materiaInsert:
+    handler: Rutas/handler-materia.materiaInsert
+    url: true
+    events: 
+      - http:
+          method: post
+          cors: true
+          path: /Materia
+          integration: lambda
+          request:
+            template:
+              application/json: '{ "oNombre" : $input.json("oNombre"),"oIsTroncoComun" : $input.json("oIsTroncoComun") }'
+  materiaGetAll:
+    handler: Rutas/handler-materia.materiaGetAll
+    url: true
+    events: 
+      - http:
+          method: get
+          cors: true
+          path: /Materia
+          integration: lambda
+  materiaGetById:
+    handler: Rutas/handler-materia.materiaGetById
+    url: true
+    events: 
+      - http:
+          method: get
+          cors: true
+          path: /MateriaById
+          integration: lambda
+          request:
+            template:
+              application/json: '{ "oID" : $input.json("oID") }'
+  materiaDelete:
+    handler: Rutas/handler-materia.materiaDelete
+    url: true
+    events: 
+      - http:
+          method: delete
+          cors: true
+          path: /Materia
+          integration: lambda
+          request:
+            template:
+              application/json: '{ "oID" : $input.json("oID") }'
+  materiaUpdate:
+    handler: Rutas/handler-materia.materiaUpdate
+    url: true
+    events: 
+      - http:
+          method: put
+          cors: true
+          path: /Materia
+          integration: lambda
+          request:
+            template:
+              application/json: '{ "oID" : $input.json("oID"), "oNombre" : $input.json("oNombre"),"oIsTroncoComun" : $input.json("oIsTroncoComun") }'
+  calificacionInsert:
+    handler: Rutas/handler-calificacion.calificacionInsert
+    url: true
+    events: 
+      - http:
+          method: post
+          cors: true
+          path: /Calificacion
+          integration: lambda
+          request:
+            template:
+              application/json: '{ "oEvaluacion" : $input.json("oEvaluacion") }'
+  calificacionGetAll:
+    handler: Rutas/handler-calificacion.calificacionGetAll
+    url: true
+    events: 
+      - http:
+          method: get
+          cors: true
+          path: /Calificacion
+          integration: lambda
+  calificacionGetById:
+    handler: Rutas/handler-calificacion.calificacionGetById
+    url: true
+    events: 
+      - http:
+          method: get
+          cors: true
+          path: /CalificacionById
+          integration: lambda
+          request:
+            template:
+              application/json: '{ "oID" : $input.json("oID") }'
+  calificacionDelete:
+    handler: Rutas/handler-calificacion.calificacionDelete
+    url: true
+    events: 
+      - http:
+          method: delete
+          cors: true
+          path: /Calificacion
+          integration: lambda
+          request:
+            template:
+              application/json: '{ "oID" : $input.json("oID") }'
+  calificacionUpdate:
+    handler: Rutas/handler-calificacion.calificacionUpdate
+    url: true
+    events: 
+      - http:
+          method: put
+          cors: true
+          path: /Calificacion
+          integration: lambda
+          request:
+            template:
+              application/json: '{ "oID" : $input.json("oID"), "oEvaluacion" : $input.json("oEvaluacion") }'

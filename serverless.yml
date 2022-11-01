@@ -239,3 +239,61 @@ functions:
           request:
             template:
               application/json: '{ "oID" : $input.json("oID"), "oEvaluacion" : $input.json("oEvaluacion") }'
+  materiaCarrerasInsert:
+    handler: Rutas/handler-materiaCarreras.materiaCarrerasInsert
+    url: true
+    events: 
+      - http:
+          method: post
+          cors: true
+          path: /MateriaCarreras
+          integration: lambda
+          request:
+            template:
+              application/json: '{ "oSemestre" : $input.json("oSemestre"), "oCarreraID" : $input.json("oCarreraID"), "oMateriaID" : $input.json("oMateriaID") }'
+  materiaCarrerasGetAll:
+    handler: Rutas/handler-materiaCarreras.materiaCarrerasGetAll
+    url: true
+    events: 
+      - http:
+          method: get
+          cors: true
+          path: /MateriaCarreras
+          integration: lambda
+  materiaCarrerasGetById:
+    handler: Rutas/handler-materiaCarreras.materiaCarrerasGetById
+    url: true
+    events: 
+      - http:
+          method: get
+          cors: true
+          path: /MateriaCarrerasById
+          integration: lambda
+          request:
+            template:
+              application/json: '{ "oID" : $input.json("oID") }'
+  materiaCarrerasDelete:
+    handler: Rutas/handler-materiaCarreras.materiaCarrerasDelete
+    url: true
+    events: 
+      - http:
+          method: delete
+          cors: true
+          path: /MateriaCarreras
+          integration: lambda
+          request:
+            template:
+              application/json: '{ "oID" : $input.json("oID") }'
+  materiaCarrerasUpdate:
+    handler: Rutas/handler-materiaCarreras.materiaCarrerasUpdate
+    url: true
+    events: 
+      - http:
+          method: put
+          cors: true
+          path: /MateriaCarreras
+          integration: lambda
+          request:
+            template:
+              application/json: '{ "oID" : $input.json("oID"), "oSemestre" : $input.json("oSemestre"), "oCarreraID" : $input.json("oCarreraID"), "oMateriaID" : $input.json("oMateriaID") }'
+                          
